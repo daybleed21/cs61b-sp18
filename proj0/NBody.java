@@ -1,4 +1,4 @@
-public class NPlanet{
+public class NBody{
 
     public static double readRadius(String file)
     {
