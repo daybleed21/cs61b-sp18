@@ -124,20 +124,6 @@ public class IntList {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * DO NOT MODIFY ANYTHING BELOW THIS LINE! Many of the concepts below here
      * will be introduced later in the course or feature some form of advanced
@@ -258,6 +244,28 @@ public class IntList {
         }
         out.format(")");
         return out.toString();
+    }
+    /**
+     * Returns the reverse of the given IntList.
+     * this method is destructive. If given null
+     * as an input, return null*/
+    public static IntList reverse(IntList A){
+        if(A == null)
+            return null;
+        if(A.rest == null)
+            return A;
+        IntList pre = A;
+        IntList p = pre.rest;
+        pre.rest =null;
+
+        while(p != null){
+            IntList successor = p.rest;
+            p.rest = pre;
+            pre = p;
+
+            p = successor;
+        }
+        return pre;
     }
 }
 
