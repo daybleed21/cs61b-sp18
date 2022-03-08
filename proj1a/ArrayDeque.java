@@ -40,7 +40,8 @@ public class ArrayDeque <T>{
 
     private void resize(int newSize){
         T[] newItems = (T[]) new Object[newSize];
-        int oldIndex = addMove(nextFirst);
+        nextFirst = addMove(nextFirst);
+        int oldIndex = nextFirst;
         for(int i = 0; i < capacity; i++ ){
             newItems[i] = items[oldIndex];
             nextFirst = addMove(nextFirst);
@@ -70,6 +71,14 @@ public class ArrayDeque <T>{
         }
         System.out.println();
     }
+    private boolean isVacant(){
+        if(capacity <= 16){
+            return false;
+        }
+        if( (capacity / 4) > size)
+            return true;
+        return false;
+    }
     public T removeFirst(){
         if(isEmpty())
             return null;
@@ -77,6 +86,8 @@ public class ArrayDeque <T>{
         T itemToReturn = items[nextFirst];
         items[nextFirst] = null;
         size--;
+        if ( isVacant())
+            resize((int) (capacity * 0.5));
         return itemToReturn;
     }
     public T removeLast(){
@@ -86,6 +97,8 @@ public class ArrayDeque <T>{
         T itemToReturn = items[nextLast];
         items[nextLast] = null;
         size--;
+        if ( isVacant())
+            resize((int) (capacity * 0.5));
         return itemToReturn;
     }
     public T get(int index){

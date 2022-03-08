@@ -66,7 +66,7 @@ public class LinkedListDeque<T>{
     }
     /**remove the first item and return it*/
     public T removeFirst(){
-        if(sentinel.next == null)
+        if(isEmpty())
             return null;
         size--;
         Node ptr = sentinel.next;
