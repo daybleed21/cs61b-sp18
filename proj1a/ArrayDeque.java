@@ -72,7 +72,7 @@ public class ArrayDeque <T>{
         System.out.println();
     }
     private boolean isVacant(){
-        if(capacity <= 16){
+        if(capacity <= 8){
             return false;
         }
         if( (capacity / 4) > size)
