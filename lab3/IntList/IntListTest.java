@@ -5,7 +5,7 @@ import org.junit.Test;
 public class IntListTest {
 
     /**
-     * Example test that verifies correctness of the IntList.of static
+     * Example test that verifies correctness of the IntList. of static
      * method. The main point of this is to convince you that
      * assertEquals knows how to handle IntLists just fine.
      */
@@ -21,7 +21,7 @@ public class IntListTest {
     }
 
     @Test
-    public void testdSquareList() {
+    public void testSquareList() {
         IntList L = IntList.of(1, 2, 3);
         IntList.dSquareList(L);
         assertEquals(IntList.of(1, 4, 9), L);
@@ -29,14 +29,14 @@ public class IntListTest {
 
     /**
      * Do not use the new keyword in your tests. You can create
-     * lists using the handy IntList.of method.
+     * lists using the handy IntList. of method.
      * <p>
      * Make sure to include test cases involving lists of various sizes
      * on both sides of the operation. That includes the empty list, which
      * can be instantiated, for example, with
      * IntList empty = IntList.of().
      * <p>
-     * Keep in mind that dcatenate(A, B) is NOT required to leave A untouched.
+     * Keep in mind that dcatenate(A, B) is NOT required to leave  A untouched.
      * Anything can happen to A.
      */
 
@@ -69,5 +69,17 @@ public class IntListTest {
     /** If you're running this from the command line, you'll need
       * to add a main method. See ArithmeticTest.java for an
       * example. */
+    @Test(timeout = 1000)
+    public void testReverse(){
+        //test the function returns reversed list
+        IntList A = IntList.of(1, 2, 3);
+        IntList p = IntList.of(1,2,3);
+        IntList exp = IntList.of(3, 2, 1);
+        assertEquals(exp,IntList.reverse(A));
+        //test if A is destructive.
+        assertNotEquals(p,IntList.reverse(A));
+        //test whether null is handled or not
+        assertEquals(null,IntList.reverse(null));
 
+    }
 }
