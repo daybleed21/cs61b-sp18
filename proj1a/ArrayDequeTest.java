@@ -16,7 +16,7 @@ public class ArrayDequeTest {
     a.addLast("the");
     a.addLast("doctor");
     a.addLast("away");
-    System.out.println("check method isFull()\nexpected: true  actual: " + a.isFull());
+
     a.removeFirst();
     a.removeLast();
     a.printDeque();

@@ -12,7 +12,7 @@ public class LinkedListDeque<T>{
         }
     }
     private Node sentinel;
-    public int size;
+    private int size;
 
     public LinkedListDeque(){
         sentinel = new Node(null, null, null);
@@ -20,25 +20,29 @@ public class LinkedListDeque<T>{
         sentinel.next = sentinel;
         size = 0;
     }
-    public LinkedListDeque(LinkedListDeque other){
-        sentinel = new Node(null, null, null);
-        sentinel.prev = sentinel;
-        sentinel.next = sentinel;
-        size = 0;
-        for(int i = 0;i < other.size ; i++){
-            addLast((T)other.get(i));
-            size++;
-        }
-
-    }
+//    public LinkedListDeque(LinkedListDeque other){
+//        sentinel = new Node(null, null, null);
+//        sentinel.prev = sentinel;
+//        sentinel.next = sentinel;
+//        size = 0;
+//        for(int i = 0;i < other.size ; i++){
+//            addLast((T)other.get(i));
+//            size++;
+//        }
+//
+//    }
     /**Adds an item of type T to the front of the deque*/
     public void addFirst(T item){
+        Node p = sentinel.next;
         sentinel.next = new Node(item,sentinel,sentinel.next);
+        p.prev = sentinel.next;
         size++;
     }
     /**Adds an item to the back of the deque*/
     public void addLast(T item){
+        Node p = sentinel.prev;
         sentinel.prev = new Node(item, sentinel.prev, sentinel);
+        p.next = sentinel.prev;
         size++;
     }
     /** return the number of item*/
@@ -90,14 +94,14 @@ public class LinkedListDeque<T>{
         }
         return ptr.item;
     }
-    public T getRecursive(int index){
-        if(index > size)
-            return null;
-        return getRecursive(sentinel.next,index);
-    }
-    private T getRecursive(Node node, int i){
-        if(i == 0)
-            return node.item;
-        return getRecursive(node.next,i-1);
-    }
+//    public T getRecursive(int index){
+//        if(index > size)
+//            return null;
+//        return getRecursive(sentinel.next,index);
+//    }
+//    private T getRecursive(Node node, int i){
+//        if(i == 0)
+//            return node.item;
+//        return getRecursive(node.next,i-1);
+//    }
 }

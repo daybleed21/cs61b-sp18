@@ -30,7 +30,7 @@ public class ArrayDeque <T>{
     public boolean isEmpty(){
         return size == 0;
     }
-    public boolean isFull(){
+    private boolean isFull(){
         return size ==  items.length;
     }
     /**enlarge the array and rearrange the array
@@ -38,7 +38,7 @@ public class ArrayDeque <T>{
      * new nextLast should be size
      */
 
-    public void resize(int newSize){
+    private void resize(int newSize){
         T[] newItems = (T[]) new Object[newSize];
         int oldIndex = addMove(nextFirst);
         for(int i = 0; i < capacity; i++ ){
@@ -54,10 +54,10 @@ public class ArrayDeque <T>{
     public int size(){
         return size;
     }
-    public int addMove(int a){
+    private int addMove(int a){
         return (a + 1 + capacity) % capacity;
     }
-    public int subMove(int a){
+    private int subMove(int a){
         return (a - 1 + capacity) % capacity;
     }
     public void printDeque(){
