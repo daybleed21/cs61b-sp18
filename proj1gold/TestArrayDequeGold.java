@@ -28,7 +28,7 @@ public class TestArrayDequeGold {
             }else if( num < 0.75 ){
                 if(student.isEmpty()){
                     assertTrue("isEmpty()", student.isEmpty());
-                    return;
+                    continue;
                 }
                 Integer stuExpected = student.get(0);
                 Integer stuActual = student.removeFirst();
@@ -41,7 +41,7 @@ public class TestArrayDequeGold {
             }else {
                 if(student.isEmpty()){
                     assertTrue("isEmpty()", student.isEmpty());
-                    return;
+                    continue;
                 }
                 Integer stuExpected = student.get(count - 1);
                 Integer stuActual = student.removeLast();
