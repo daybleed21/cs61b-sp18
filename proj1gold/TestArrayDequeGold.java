@@ -16,26 +16,39 @@ public class TestArrayDequeGold {
             if(num < 0.25){
                 student.addLast(i);
                 array.addLast(i);
-                assertEquals("addLast(" + i + ")",student.get(count),array.get(count));
+//                assertEquals("StudentArrayDeque addLast(" + i + ")",(Integer) i,student.get(count));
+                assertEquals("addLast("+i+")", student.get(count), array.get(count));
                 count++;
-            }else if(num >= 0.25 && num < 0.5) {
+            }else if( num < 0.5) {
                 student.addFirst(i);
+                assertEquals("StudentArrayDeque addFirst (" + i +")",(Integer)i,student.get(0));
                 array.addFirst(i);
-                assertEquals("addFirst(" + i + ")", student.get(0),array.get(0));
+                assertEquals("ArrayDequeSolution addFirst(" + i + ")", (Integer) i, array.get(0));
                 count++;
-            }else if(count > 0 && num >= 0.5 && num < 0.75 ){
+            }else if( num < 0.75 ){
+                if(student.isEmpty()){
+                    assertTrue("isEmpty()", student.isEmpty());
+                    return;
+                }
                 Integer stuExpected = student.get(0);
                 Integer stuActual = student.removeFirst();
-                assertEquals("NOt good Random Number. expected:"
-                        +stuExpected+"actual:"+stuActual,stuExpected,stuActual);
+                assertEquals("StudentArrayDeque removeFirst()",stuExpected,stuActual);
                 Integer arrExpected = array.get(0);
                 Integer arrActual = array.removeFirst();
-                assertEquals("NOt good Random Number. expected:"
-                        +arrExpected+"actual:"+arrActual,arrExpected,arrActual);
+                assertEquals("ArrayDequeSolution removeFirst()"
+                        ,arrExpected,arrActual);
                 count--;
-            }else if(count > 0){
-                student.removeLast();
-                array.removeLast();
+            }else {
+                if(student.isEmpty()){
+                    assertTrue("isEmpty()", student.isEmpty());
+                    return;
+                }
+                Integer stuExpected = student.get(count - 1);
+                Integer stuActual = student.removeLast();
+                assertEquals("StudentArrayDeque removeLast()",stuExpected,stuActual);
+                Integer arrExpected = array.get(count - 1);
+                Integer arrActual = array.removeLast();
+                assertEquals("ArrayDequeSolution removeLast()",arrExpected,arrActual);
                 count--;
             }
 
