@@ -34,7 +34,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
      * covered Monday.
      */
     public void enqueue(T x) {
-        // TODO: Enqueue the item. Don't forget to increase fillCount and update last.
+//         TODO: Enqueue the item. Don't forget to increase fillCount and update last.
         if(x == null){
             throw new IllegalArgumentException("can't add null");
         }
@@ -75,5 +75,28 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
     }
 
     // TODO: When you get to part 5, implement the needed code to support iteration.
+    protected class ringIterator implements Iterator<T>{
+        private int ptr;
+        private int count;
+        public ringIterator(){
+            ptr = first;
+            count = 0;
+        }
+        public boolean hasNext(){
+            return count < fillCount();
+        }
+        public T next(){
+            T toReturn = rb[ptr];
+            ptr = (ptr + 1) % capacity();
+            count += 1;
+            return toReturn;
+        }
+
+    }
+    @Override
+    public Iterator<T> iterator() {
+        return new ringIterator();
+    }
+
 
 }
